@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}">
+    <script src="{{ url_for('static', filename='js/staff.js') }}"></script>
+</head>
+<body>
+    <div id="div1">
+        <p><span id="s1">Shroud</span> <span id="s3">Tech</span> <span id="s2">Hi, <span style="color: #F4D03F; font-weight: bolder; font-size: x-large;">{{staff.name}}</span></span></p>
+    </div>
+
+    <table id="table1">
+        <tr class="tr1">
+            <th class="th1">👤 Profile</th>
+            <th class="th1" id="a" onclick="a()">🙋🏻‍♂️ Students</th>
+        </tr>
+    </table>
+
+    <div class="card-container">
+        <div class="card" id="card1">
+            <p style="color: #2980B9; font-weight: bolder; text-transform: uppercase;">{{staff.name}}</p>
+            <hr>
+            <p title="current semester">Semester - {{staff.sem}}</p>
+            <hr>
+            <p>Branch - {{staff.branch}}</p>
+            <p>Subject - {{staff.subject}}</p>
+            <hr>
+            <p class="left-align">Phno: {{staff.phno}}</p>
+            <hr>
+            <p class="left-align">E-mail: {{staff.gmail}}</p>
+        </div>
+
+        <div class="card" id="card2">
+            <table id="table2">
+                <tr>
+                    <th>SSN</th>
+                    <th>USN</th>
+                    <th>Name</th>
+                
+                </tr>
+                
+               {% for student in students %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+              
+                    <td>{{student.usn}}</td>
+                    <td>{{student.name}}</td>
+                  
+                    
+                    
+                </tr>
+                {% endfor %}
+                
+            </table>
+        </div>
+
+        <div class="card" id="card3">
+
+    
+        </div>
+    </div>
+
+
+</body>
+</html>

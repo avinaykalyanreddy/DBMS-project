@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}">
+    <script src="{{ url_for('static', filename='js/student.js') }}" defer></script>
+    
+
+
+
+</head>
+<body>
+
+    <div id="div1">
+        <p><span id="s1">Shroud</span> <span id="s3">Tech</span> <span id="s2">Hi, <span style="color: #F4D03F; font-weight: bolder; font-size: x-large;">{{ student.name }}</span></span></p>
+    </div>
+
+    <table id="table1">
+        <tr class="tr1">
+            <th class="th1">👤 Profile</th>
+            <th class="th1" id="a" onclick="a()">🙋🏻‍♂️ Attendance</th>
+            <th class="th1"  id="i" onclick="i()">📑 Internal Assessment</th>
+            <th class="th1"  id="s" onclick="s()">📚 Subjects</th>
+        </tr>
+    </table>
+
+    <div class="card-container">
+
+
+        <div class="card" id="card1">
+                <p style="color: #2980B9; font-weight: bolder; text-transform: uppercase;">{{ student.name }}</p>
+                <hr>
+                <p title="USN">{{ student.usn }}</p>
+                <p title="current semester">Semester - {{ student.sem }}</p>
+                <hr>
+                <p>BE-{{ student.branch }}</p>
+                <hr>
+                <p>{{ student.branch }}-{{ student.sem }}-{{ student.div }}</p>
+                <p>Roll No. {{ student.rollno }}</p>
+                <hr>
+                <p class="left-align">Student: {{ student.student }}</p>
+                <hr>
+                <p class="left-align">Father: {{ student.father }}</p>
+                <hr>
+                <p class="left-align">Mother: {{ student.mother }}</p>
+                <hr>
+                <p class="left-align">E-mail: {{ student.gmail }}</p>
+        </div>
+
+
+        <div class="card" id="card2">
+            <table id="table2">
+                <tr class="tr2">
+                    <th>Course</th>
+                    <th >Total</th>
+                    <th >Present</th>
+                    <th >Attendance</th>
+                </tr>
+                <tr class="tr2">
+                    <td>Analysis and design of algorithms</td>
+                    <td>34</td>
+                    <td>21</td>
+                    <td>61.78%</td>
+                </tr>
+                <tr class="tr2">
+                    <td>Data Base Management System</td>
+                    <td>55</td>
+                    <td>41</td>
+                    <td>75%</td>
+                </tr>
+                <tr class="tr2">
+                    <td>Linear Algebra</td>
+                    <td>46</td>
+                    <td>37</td>
+                    <td>80%</td>
+                </tr>
+                <tr class="tr2">
+                    <td>Advance Java</td>
+                    <td>55</td>
+                    <td>39</td>
+                    <td>70%</td>
+                </tr>
+            </table>
+
+
+        </div>
+
+
+        <div class="card" id="card3">
+
+            <table id="table3">
+ 
+                 <tr>
+                    <th >Course</th>
+                    <th >Internal Assesment 1</th>
+                    <th >Internal Assesment 2</th>
+                    <th >Internal Assesment 3</th>
+
+                 </tr>
+
+                
+                 
+                {% for i in internal_marks %}
+                <tr>
+                  <td>{{i}}</td>
+                  <td>{{internal_marks[i][0][0]}}</td>
+                  <td>{{internal_marks[i][1][0]}}</td>
+                  <td>{{internal_marks[i][2][0]}}</td>
+                </tr>
+                {% endfor %}
+                 
+            </table>
+            
+
+        </div>
+
+        <div class="card" id="card4">
+            
+            <table id="table4">
+                      <tr> 
+                          <th>Name</th>
+                          <th>Course</th>
+                          <th>Profile</th>
+
+                      </tr>
+
+                      {%for i in range(len(subjects))%}
+                          <tr>
+                             
+                             <td>{{staffs[i].name}}</td>
+                             <td>{{subjects[i]}}</td>
+                             {% if staffs[i] != 'Not Found' %}
+                              <td><button style="background-color: #4eca9d;padding: 5px;border: none; color: white; border-radius: 5px;" onclick="get_staff_info('{{staffs[i].name}}','{{staffs[i].professor}}','{{staffs[i].gmail}}','{{staffs[i].subject}}','{{staffs[i].branch}}','{{staffs[i].sem}}')">view</button></td>
+                            
+
+                             {% else %}
+                               <td></td>
+                            {% endif %}
+
+                          </tr>
+                      {% endfor %}
+
+
+                            
+
+            </table>
+
+        </div>
+
+        <div class="card" id="card5"></div>
+
+
+        
+    </div>
+
+    
+</body>
+</html>
